@@ -5,6 +5,8 @@ let playerChoice;
 let gameResult;
 let computerPoints=0;
 let playerPoints=0;
+let rounds=0;
+let finalMessage;
 
 function getComputerChoice(){
     const randomIndex = Math.floor(Math.random() * choices.length);
@@ -16,12 +18,15 @@ function play(playerChoice, computerChoice){
 
     if (computerChoice == 'rock' && playerChoice == 'scissors'){
         message = "You Lose! Rock beats Scissors";
+        computerPoints++;
     } 
     else if (computerChoice == 'paper' && playerChoice == 'rock'){
         message = "You Lose! Paper beats Rock";
+        computerPoints++;
     }
     else if (computerChoice == 'scissors' && playerChoice == 'paper'){
         message = "You Lose! Scissors beat Paper";
+        computerPoints++;
     }
     else if (computerChoice == playerChoice){
         message = "This is a draw!"
@@ -29,19 +34,24 @@ function play(playerChoice, computerChoice){
 
     if (playerChoice == 'rock' && computerChoice == 'scissors'){
         message = "You win! Rock beats Scissors";
+        playerPoints++;
     } 
     else if (playerChoice == 'paper' && computerChoice == 'rock'){
         message = "You win! Paper beats Rock";
+        playerPoints++;
     }
     else if (playerChoice == 'scissors' && computerChoice == 'paper'){
         message = "You win! Scissors beat Paper";
+        playerPoints++;
     }
 
     return message;
 }
 
 function game(){
-    for(let i=1; i<=1; i++){
+    rounds = prompt("How many rounds would you like to play? ");
+
+    for(let i=0; i<rounds; i++){
         playerChoice = prompt('What is your choice?');
         console.log("You: " + playerChoice);
 
@@ -50,7 +60,22 @@ function game(){
 
         gameResult = play(playerChoice, computerChoice);
         console.log(gameResult);
+
+        console.log("Player : " + playerPoints + " " + "Computer : " + computerPoints)
+        console.log(" ");
     }
+
+    if(playerPoints == computerPoints){
+        finalMessage = "Its a draw!";
+    } 
+    else if (playerPoints > computerPoints){
+        finalMessage = "Congratulations! You Win!";
+    } 
+    else if (playerPoints < computerPoints){
+        finalMessage = "Too bad! You lose!";
+    }
+
+    return finalMessage;
 }
 
-game();
+console.log(game());
