@@ -1,7 +1,10 @@
-const choices = ['Rock','Paper','Scissors'];
+const choices = ['rock','paper','scissors'];
 let message;
 let computerChoice;
 let playerChoice;
+let gameResult;
+let computerPoints=0;
+let playerPoints=0;
 
 function getComputerChoice(){
     const randomIndex = Math.floor(Math.random() * choices.length);
@@ -9,7 +12,7 @@ function getComputerChoice(){
 }
 
 function play(playerChoice, computerChoice){
-    playerChoice = playerChoice.toLower();
+    playerChoice = playerChoice.toLowerCase();
 
     if (computerChoice == 'rock' && playerChoice == 'scissors'){
         message = "You Lose! Rock beats Scissors";
@@ -20,7 +23,34 @@ function play(playerChoice, computerChoice){
     else if (computerChoice == 'scissors' && playerChoice == 'paper'){
         message = "You Lose! Scissors beat Paper";
     }
+    else if (computerChoice == playerChoice){
+        message = "This is a draw!"
+    }
+
+    if (playerChoice == 'rock' && computerChoice == 'scissors'){
+        message = "You win! Rock beats Scissors";
+    } 
+    else if (playerChoice == 'paper' && computerChoice == 'rock'){
+        message = "You win! Paper beats Rock";
+    }
+    else if (playerChoice == 'scissors' && computerChoice == 'paper'){
+        message = "You win! Scissors beat Paper";
+    }
+
+    return message;
 }
 
-computerChoice = getComputerChoice();
-console.log(computerChoice);
+function game(){
+    for(let i=1; i<=1; i++){
+        playerChoice = prompt('What is your choice?');
+        console.log("You: " + playerChoice);
+
+        computerChoice = getComputerChoice();
+        console.log("Computer: " + computerChoice);
+
+        gameResult = play(playerChoice, computerChoice);
+        console.log(gameResult);
+    }
+}
+
+game();
