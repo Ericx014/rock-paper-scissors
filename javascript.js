@@ -8,11 +8,13 @@ let playerPoints=0;
 let rounds=0;
 let finalMessage;
 
+// Generate random computer choice
 function getComputerChoice(){
     const randomIndex = Math.floor(Math.random() * choices.length);
     return choices[randomIndex];
 }
 
+// Determine winner of game
 function play(playerChoice, computerChoice){
     playerChoice = playerChoice.toLowerCase();
 
@@ -48,6 +50,7 @@ function play(playerChoice, computerChoice){
     return message;
 }
 
+// Play game
 function game(){
     rounds = prompt("How many rounds would you like to play? ");
 
