@@ -62,15 +62,15 @@ scissorsButton.addEventListener('click', () => handleClick('scissors'));
 const scoreMessage = document.querySelector('.score-message');
 
 function printScoreMessage(winner, playerChoice, computerChoice){
-    if (winner == "player"){
+    if (winner === "player"){
         scoreMessage.textContent = `${capitalizeFirstLetter(playerChoice)} beats ${(computerChoice)}!`;
     }
 
-    if (winner == "computer"){
+    if (winner === "computer"){
         scoreMessage.textContent = `${capitalizeFirstLetter(computerChoice)} beats ${(playerChoice)}!`;
     }   
 
-    if (winner == 'tie'){
+    if (winner === 'tie'){
         scoreMessage.textContent = `${capitalizeFirstLetter(computerChoice)} ties with ${(playerChoice)}!`;
     }
 }
@@ -89,7 +89,12 @@ function updateScoreCount(winner){
 
 }
 
+function isGameOver(){
+    return playerPoints === 5 || computerPoints === 5
+}
+
 const finalWinner = document.querySelector('.finalWinner');
+const allButtons = document.querySelectorAll("button");
 
 function printFinalWinner(playerPoints, computerPoints){
     if ((playerPoints == 5) || (computerPoints == 5)){
@@ -101,10 +106,10 @@ function printFinalWinner(playerPoints, computerPoints){
         if (computerPoints >  playerPoints){
             finalWinner.textContent = "COMPUTER WINS!";
         }
-    }
 
-    if ((playerPoints > 5) || (computerPoints > 5)){
-        restartGame();
+        if ((playerPoints == 5) || (computerPoints == 5)){
+            allButtons.forEach(button => button.addEventListener("click", restartGame));
+        }
     }
 }
 
